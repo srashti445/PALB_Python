@@ -1,0 +1,17 @@
+class Solution:
+    def rotate(self, arr):
+        n = len(arr)
+        
+        # If array has 0 or 1 element, no rotation needed
+        if n <= 1:
+            return
+        
+        # Store last element
+        last = arr[n - 1]
+        
+        # Shift elements to the right
+        for i in range(n - 1, 0, -1):
+            arr[i] = arr[i - 1]
+        
+        # Place last element at first position
+        arr[0] = last
