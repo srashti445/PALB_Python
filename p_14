@@ -1,0 +1,25 @@
+class Solution:
+    def findMinDiff(self, arr, m):
+        n = len(arr)
+        
+        # If there are no packets or students
+        if m == 0 or n == 0:
+            return 0
+        
+        # If students are more than packets
+        if m > n:
+            return -1
+        
+        # Sort the array
+        arr.sort()
+        
+        # Initialize minimum difference
+        min_diff = float('inf')
+        
+        # Find the minimum difference between
+        # max and min of m consecutive packets
+        for i in range(n - m + 1):
+            diff = arr[i + m - 1] - arr[i]
+            min_diff = min(min_diff, diff)
+        
+        return min_diff
