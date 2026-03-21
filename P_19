@@ -1,0 +1,23 @@
+class Solution:
+    def frequencySort(self, s):
+        freq = [0] * 26
+        
+        # Count frequency
+        for ch in s:
+            freq[ord(ch) - ord('a')] += 1
+        
+        # Create list of (char, freq)
+        chars = []
+        for i in range(26):
+            if freq[i] > 0:
+                chars.append((chr(i + ord('a')), freq[i]))
+        
+        # Sort by frequency, then lexicographically
+        chars.sort(key=lambda x: (x[1], x[0]))
+        
+        # Build result
+        result = []
+        for ch, f in chars:
+            result.append(ch * f)
+        
+        return "".join(result)
