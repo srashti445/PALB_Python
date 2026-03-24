@@ -1,0 +1,20 @@
+class Solution:
+    def countSubarrays(self, arr):
+        n = len(arr)
+        stack = []
+        res = 0
+        
+        for i in range(n):
+            # Maintain increasing stack
+            while stack and arr[stack[-1]] > arr[i]:
+                idx = stack.pop()
+                res += i - idx
+            
+            stack.append(i)
+        
+        # Remaining elements
+        while stack:
+            idx = stack.pop()
+            res += n - idx
+        
+        return res
