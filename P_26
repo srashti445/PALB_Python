@@ -1,0 +1,30 @@
+class Solution:
+    def countLessEqual(self, arr, x):
+        n = len(arr)
+
+        
+        low, high = 0, n - 1
+        while low < high:
+            mid = (low + high) // 2
+            if arr[mid] > arr[high]:
+                low = mid + 1
+            else:
+                high = mid
+        pivot = low
+
+        
+        def count(left, right):
+            start = left   
+            res = 0
+            
+            while left <= right:
+                mid = (left + right) // 2
+                if arr[mid] <= x:
+                    res = mid - start + 1   
+                    left = mid + 1
+                else:
+                    right = mid - 1
+            
+            return res
+
+        return count(0, pivot - 1) + count(pivot, n - 1)
