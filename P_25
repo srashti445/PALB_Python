@@ -1,0 +1,20 @@
+class Solution:
+    def prevSmaller(self, arr):
+        stack = []
+        result = []
+        
+        for i in range(len(arr)):
+            # Pop elements >= current element
+            while stack and stack[-1] >= arr[i]:
+                stack.pop()
+            
+            # If stack is empty → no smaller element
+            if not stack:
+                result.append(-1)
+            else:
+                result.append(stack[-1])
+            
+            # Push current element into stack
+            stack.append(arr[i])
+        
+        return result
